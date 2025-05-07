@@ -46,6 +46,24 @@ public class SLList {
         size += 1;
     }
 
+    public void addLastNumTwo(int x) {
+        IntNode current = sen.next;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = new IntNode(x, null);
+        size += 1;
+    }
+
+    public void insert(int newValue, int k) {
+        IntNode current = sen;
+        for (int i = 0; i < newValue; i++) {
+            current = current.next;
+        }
+        current.next = new IntNode(k, current.next);
+        size += 1;
+    }
+
     public int getLast() {
         IntNode p = sen.next;
         while (p.next != null) {
@@ -56,15 +74,15 @@ public class SLList {
 
     public String toString() {
         String answer = "";
-        IntNode p = sen.next;
-        if (p == null) {
+        IntNode current = sen.next;
+        if (current == null) {
             return answer;
         }
-        while (p.next != null) {
-            answer += p.head + ", ";
-            p = p.next;
+        while (current.next != null) {
+            answer += current.head + ", ";
+            current = current.next;
         }
-        answer += p.head;
+        answer += current.head;
         return answer;
     }
 
@@ -79,11 +97,35 @@ public class SLList {
         }
     }
 
-    public void insert(int newValue, int k) {
-        IntNode p = sen.next;
-        for (int i = 0; i < k; i++) {
-            p = p.next;
+    public void removeLast() {
+        IntNode current = sen.next;
+        IntNode prev = sen;
+        if (current == null) {   // it's like a train sen is the top base then start the actual node
+            return;       // imagine looping through Seele thighs, Top sen -> left thigh -> right thigh
         }
-        //o
+        while (current.next != null) {
+            prev = current;
+            current = current.next;
+        }
+        prev.next = null;
+        size -= 1;
+    }
+
+    public double getAverage() {
+        if (size == 0) {
+            return 0.0;
+        }
+        double sum = 0;
+        double count = 0;
+        IntNode current = sen.next;
+        while (current.next != null) {
+            sum += current.head;
+            count++;
+            current = current.next;
+        }
+        sum += current.head;
+        count++;
+        return sum / count;
     }
 }
+
