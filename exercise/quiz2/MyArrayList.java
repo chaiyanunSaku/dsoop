@@ -70,6 +70,7 @@ public class MyArrayList {   // this is a class called "MyArrayList"
             throw new NoSuchElementException("Our array is empty...");
         }
         int removed = items[0];  // we will return this later, it's the value at index 0
+        // System.arraycopy(items, 1, items, 0, size - 1);  // one line copy array
         for (int i = 1; i < size; i++) {   // start at i = 1, it moves everything one spot to the left
             items[i-1] = items[i];
         }
